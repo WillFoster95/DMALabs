@@ -55,7 +55,10 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 mTodoIndex -= 1;
-                mTodoIndex = mTodoIndex % mTodos.length;
+                if (mTodoIndex == -1)
+                {
+                    mTodoIndex = mTodos.length - 1;
+                }
                 TodoTextView.setText(mTodos[mTodoIndex]);
             }
         });
