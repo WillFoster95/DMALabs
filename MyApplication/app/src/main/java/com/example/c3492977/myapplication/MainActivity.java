@@ -16,8 +16,7 @@ public class MainActivity extends AppCompatActivity
     private int mTodoIndex = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
 
         // call the super class onCreate to complete the creation of activity like
         // the view hierarchy
@@ -40,12 +39,11 @@ public class MainActivity extends AppCompatActivity
         Button buttonNext;
         buttonNext = (Button) findViewById(R.id.buttonNext);
         // OnClick listener for the  Next button
-        buttonNext.setOnClickListener(new View.OnClickListener()
-        {
+        buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 mTodoIndex += 1;
+                mTodoIndex = mTodoIndex % mTodos.length;
                 TodoTextView.setText(mTodos[mTodoIndex]);
             }
         });
@@ -53,15 +51,13 @@ public class MainActivity extends AppCompatActivity
         Button buttonPrev;
         buttonPrev = (Button) findViewById(R.id.buttonPrev);
         // OnClick listener for the  Prev button
-        buttonPrev.setOnClickListener(new View.OnClickListener()
-        {
+        buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 mTodoIndex -= 1;
+                mTodoIndex = mTodoIndex % mTodos.length;
                 TodoTextView.setText(mTodos[mTodoIndex]);
             }
         });
     }
-    // branch 2 ***
 }
