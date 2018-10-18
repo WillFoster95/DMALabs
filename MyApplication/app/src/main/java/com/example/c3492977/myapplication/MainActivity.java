@@ -1,6 +1,7 @@
 package com.example.c3492977.myapplication;
 
 import android.content.Intent;
+import android.util.Log;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,21 +10,28 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+
 public class MainActivity extends AppCompatActivity
 {
 
     private String[] mTodos;
     private int mTodoIndex = 0;
 
+    public static final String TAG = "TodoActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+
         if (savedInstanceState != null)
         {
             mTodoIndex = savedInstanceState.getInt(TODO_INDEX, 0);
         }
 
         super.onCreate(savedInstanceState);
+
+        Log.d(TAG, " *** Just to say the PC is in onCreate!");
+
         setContentView(R.layout.activity_main);                         //The layout is defined by res/layout/activity_main.xml
 
         final TextView TodoTextView;                                    //Initialize member TextView so we can manipulate it later
