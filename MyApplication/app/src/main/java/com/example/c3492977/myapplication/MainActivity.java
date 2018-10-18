@@ -16,29 +16,25 @@ public class MainActivity extends AppCompatActivity
     private int mTodoIndex = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        if (savedInstanceState != null)
+        {
+            mTodoIndex = savedInstanceState.getInt(TODO_INDEX, 0);
+        }
 
-        // call the super class onCreate to complete the creation of activity like
-        // the view hierarchy
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);                         //The layout is defined by res/layout/activity_main.xml
 
-        // set the user interface layout for this Activity
-        // the layout file is defined in the project res/layout/activity_todo.xml file
-        setContentView(R.layout.activity_main);
+        final TextView TodoTextView;                                    //Initialize member TextView so we can manipulate it later
+        TodoTextView = (TextView) findViewById(R.id.textViewTodo);      //textViewTodo is from res/layout/activity.xml
 
-        // initialize member TextView so we can manipulate it later
-        final TextView TodoTextView;
-        TodoTextView = (TextView) findViewById(R.id.textViewTodo);
-
-        // read the todo array from res/values/strings.xml
         Resources res = getResources();
-        mTodos = res.getStringArray(R.array.todo);
-        // display the first task from mTodo array in the TodoTextView
-        TodoTextView.setText(mTodos[mTodoIndex]);
+        mTodos = res.getStringArray(R.array.todo);                      //todo is from res/values/strings.xml
+        TodoTextView.setText(mTodos[mTodoIndex]);                       //Display the first task from mTodo array in the TodoTextView
 
         Button buttonNext;
-        buttonNext = (Button) findViewById(R.id.buttonNext);
-        // OnClick listener for the  Next button
+        buttonNext = (Button) findViewById(R.id.buttonNext);            //OnClick listener for the  Next button
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,8 +45,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         Button buttonPrev;
-        buttonPrev = (Button) findViewById(R.id.buttonPrev);
-        // OnClick listener for the  Prev button
+        buttonPrev = (Button) findViewById(R.id.buttonPrev);            //OnClick listener for the  Prev button
         buttonPrev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,5 +57,13 @@ public class MainActivity extends AppCompatActivity
                 TodoTextView.setText(mTodos[mTodoIndex]);
             }
         });
+    }
+
+    private static final String TODO_INDEX = "todoIndex";
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState)          //Override to write the value of mTodoIndex into the Bundle with TODO_INDEX as its key
+    {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt(TODO_INDEX, mTodoIndex);
     }
 }
