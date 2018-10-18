@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity
                 }
                 TodoTextView.setText(mTodos[mTodoIndex]);
             }
-
         });
     }
 }
